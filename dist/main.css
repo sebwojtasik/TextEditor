@@ -1,0 +1,145 @@
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+  --primary: #f0424d;
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
+  caret-color: var(--primary);
+}
+
+.has-background-primary {
+  background: var(--primary);
+}
+
+.has-text-centered {
+  text-align: center;
+}
+
+.has-text-white {
+  color: white;
+}
+
+.grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 10% 5% auto 5% 10%;
+  grid-template-rows: 25% 100px auto;
+}
+
+.column {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 8px 8px 0 2px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+}
+
+.button {
+  font-size: 1rem;
+  background-color: #f2f2f2;
+  border: 2px solid #f2f2f2;
+  margin-right: 0.5rem;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem 0.75rem;
+}
+
+.button:hover {
+  background-color: #ededed;
+  border-color: #ededed;
+  color: var(--primary);
+}
+
+.button:active {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.content {
+  margin-top: 1rem;
+  border: 2px solid var(--primary);
+  padding: 0 1rem 0.25rem 1rem;
+}
+
+::selection {
+  color: white;
+  background: var(--primary);
+}
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.open {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.modal-background {
+  position: absolute;
+  background: rgb(65, 5, 9, 0.75);
+  width: 100%;
+  height: 100%;
+}
+
+.modal-container {
+  border: none;
+  background: white;
+  position: relative;
+  padding: 30px;
+}
+
+input {
+  border: 2px solid #ededed;
+  box-shadow: none;
+  padding: 3px;
+  outline: none;
+}
+
+.button > .closed {
+  display: inline;
+}
+
+.button > .open {
+  display: none;
+}
+
+.button:hover > .closed {
+  display: none;
+}
+
+.button:hover > .open {
+  display: inline;
+}
+
+li {
+  height: 1.25rem;
+}
+
+code {
+  white-space: pre;
+}
+
+.modal-container {
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+}
+

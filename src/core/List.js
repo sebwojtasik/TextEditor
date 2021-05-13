@@ -47,7 +47,7 @@ export default class List {
     callingListItem.innerHTML = callingListItem.innerText.replaceAll('\n', '');
     if (this.listElement.lastChild.innerText == '') {
       // create a new paragraph if the previous list item is empty
-      this.listElement.lastChild.remove();
+      if (this.listElement.children.length > 1) this.listElement.lastChild.remove();
       this.save();
       textEditor.insertNewBlock();
     } else {
@@ -61,17 +61,21 @@ export default class List {
   }
 
   removeItem(event, listItem) {
-    if (!listItem.previousSibling) {
+    // delete it only if it's not the last block left
+    if (model.blocks.length > 1) {
       // if the item is the only one in the list, delete the whole list block
-      let currentBlockIndex = textEditor.getCurrentBlockIndex();
-      this.listElement.remove();
-      delete model.blocks[currentBlockIndex];
-      textEditor.focusOnBlockIndex(currentBlockIndex - 1);
-    } else {
-      // else delete previous list item
-      listItem.previousSibling.focus();
-      listItem.remove();
-      this.save();
+      if (!listItem.previousSibling) {
+        console.log(model.blocks.length);
+        let currentBlockIndex = textEditor.getCurrentBlockIndex();
+        this.listElement.remove();
+        delete model.blocks[currentBlockIndex];
+        textEditor.focusOnBlockIndex(currentBlockIndex - 1);
+      } else {
+        // else delete previous list item
+        listItem.previousSibling.focus();
+        listItem.remove();
+        this.save();
+      }
     }
   }
 

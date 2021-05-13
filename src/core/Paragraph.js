@@ -1,4 +1,5 @@
 import { textEditor } from '../app';
+import { model } from './model';
 
 export default class Paragraph {
   constructor(block) {
@@ -42,10 +43,13 @@ export default class Paragraph {
   }
 
   deleteCurrentParagraph() {
-    let previousBlockIndex = textEditor.getCurrentBlockIndex() - 1;
-    textEditor.deleteCurrentBlock();
-    this.paragraphElement.remove();
-    textEditor.focusOnBlockIndex(previousBlockIndex);
+    // delete only if it's not the last block left
+    if (model.blocks.length > 1) {
+      let previousBlockIndex = textEditor.getCurrentBlockIndex() - 1;
+      textEditor.deleteCurrentBlock();
+      this.paragraphElement.remove();
+      textEditor.focusOnBlockIndex(previousBlockIndex);
+    }
   }
 
   focusOnCurrent() {

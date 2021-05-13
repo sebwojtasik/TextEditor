@@ -2,6 +2,7 @@
 
 ![preview](/preview.png)
 A text editor app made in vanilla JavaScript that returns clean JSON data.
+[texteditor-sebwojtasik.netlify.app](https://texteditor-sebwojtasik.netlify.app/)
 
 ## Running
 

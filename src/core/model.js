@@ -23,13 +23,6 @@ export let model = {
     {
       type: 'paragraph',
       data: {
-        text: "Unfortunately it does have some small UX caveats that I didn't have enough time to adress.",
-      },
-      current: false,
-    },
-    {
-      type: 'paragraph',
-      data: {
         text: 'Looking forward to hearing from you :)',
       },
       current: false,

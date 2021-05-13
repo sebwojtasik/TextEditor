@@ -11,6 +11,10 @@
   caret-color: var(--primary);
 }
 
+[contenteditable]:focus {
+  background-color: #f0424d10;
+}
+
 .has-background-primary {
   background: var(--primary);
 }

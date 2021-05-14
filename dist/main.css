@@ -133,7 +133,7 @@ input {
   display: inline;
 }
 
-li {
+li:empty {
   height: 1.25rem;
 }
 
@@ -145,5 +145,17 @@ code {
   max-width: 90vw;
   max-height: 90vh;
   overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1% 1% auto 1% 1%;
+    grid-template-rows: 25% 100px auto;
+  }
+  .button {
+    font-size: 0.9rem;
+  }
 }
 

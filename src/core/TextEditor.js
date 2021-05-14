@@ -33,25 +33,7 @@ export default class TextEditor {
     if (model.blocks[properIndex].type === 'list') {
       element.lastChild.focus();
     }
-    document.dispatchEvent(
-      new KeyboardEvent('keydown', {
-        key: 'ArrowDown',
-        keyCode: 40, // example values.
-        code: 'ArrowDown', // put everything you need in this object.
-        which: 40,
-        shiftKey: false, // you don't need to include values
-        ctrlKey: false, // if you aren't going to use them.
-        metaKey: false, // these are here for example's sake.
-      })
-    );
     // Improvment possibility: figure out a way to move the caret to the end of the element
-    // if (element.innerHTML.length > 0) {
-    //   let selection = window.getSelection();
-    //   let range = document.createRange();
-    //   range.selectNode(element);
-    //   selection.addRange(range);
-    //   // selection.collapseToEnd();
-    // }
   }
 
   deleteCurrentBlock() {

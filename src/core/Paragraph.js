@@ -28,13 +28,15 @@ export default class Paragraph {
         if (
           event.key === 'Backspace' &&
           (this.paragraphElement.innerText === '' || this.paragraphElement.innerHTML === '<br>')
-        )
+        ) {
           this.deleteCurrentParagraph();
-        if (event.key === 'ArrowDown') {
+        } else if (event.key === 'ArrowDown') {
           textEditor.focusOnBlockIndex(textEditor.getCurrentBlockIndex() + 1);
-        }
-        if (event.key === 'ArrowUp') {
+        } else if (event.key === 'ArrowUp') {
           textEditor.focusOnBlockIndex(textEditor.getCurrentBlockIndex() - 1);
+        } else if (event.key === 'Enter') {
+          event.preventDefault();
+          textEditor.insertNewBlock();
         }
       },
       true
@@ -60,7 +62,6 @@ export default class Paragraph {
   save(event = {}) {
     if (event.inputType === 'insertParagraph') {
       event.preventDefault();
-      textEditor.insertNewBlock();
     } else {
       this.block.data.text = this.paragraphElement.innerHTML;
     }

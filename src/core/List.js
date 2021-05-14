@@ -15,27 +15,13 @@ export default class List {
     return this.listElement;
   }
 
-  save(event = {}, callingListItem) {
+  save(event = {}) {
     if (event.inputType === 'insertParagraph') {
       event.preventDefault();
-      this.insertNewListItem(callingListItem);
     } else {
       const items = Array.from(this.listElement.querySelectorAll('li'));
       this.block.data.items = items.map((li) => li.innerHTML);
     }
-  }
-
-  createListItem(item = '') {
-    let listItem = document.createElement('li');
-    listItem.innerHTML = item;
-    listItem.setAttribute('contenteditable', 'true');
-    listItem.addEventListener('input', (event) => this.save(event, listItem));
-    document.addEventListener('save', () => this.save(), false);
-    listItem.addEventListener('keydown', (event) => this.handleKeydown(event, listItem));
-    listItem.addEventListener('focus', () => {
-      this.focusOnCurrent();
-    });
-    return listItem;
   }
 
   focusOnCurrent() {
@@ -60,12 +46,24 @@ export default class List {
     }
   }
 
+  createListItem(item = '') {
+    let listItem = document.createElement('li');
+    listItem.innerHTML = item;
+    listItem.setAttribute('contenteditable', 'true');
+    listItem.addEventListener('input', (event) => this.save(event));
+    document.addEventListener('save', () => this.save(), false);
+    listItem.addEventListener('keydown', (event) => this.handleKeydown(event, listItem));
+    listItem.addEventListener('focus', () => {
+      this.focusOnCurrent();
+    });
+    return listItem;
+  }
+
   removeItem(event, listItem) {
     // delete it only if it's not the last block left
     if (model.blocks.length > 1) {
       // if the item is the only one in the list, delete the whole list block
       if (!listItem.previousSibling) {
-        console.log(model.blocks.length);
         let currentBlockIndex = textEditor.getCurrentBlockIndex();
         this.listElement.remove();
         delete model.blocks[currentBlockIndex];
@@ -94,6 +92,9 @@ export default class List {
       } else {
         textEditor.focusOnBlockIndex(textEditor.getCurrentBlockIndex() - 1);
       }
+    } else if (event.key === 'Enter') {
+      event.preventDefault();
+      this.insertNewListItem(listItem);
     }
   }
 }

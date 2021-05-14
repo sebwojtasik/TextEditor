@@ -4,11 +4,10 @@ import { model } from './model';
 export default class Paragraph {
   constructor(block) {
     this.block = block;
-    this.paragraphElement;
+    this.paragraphElement = document.createElement('p');
   }
 
   render() {
-    this.paragraphElement = document.createElement('p');
     this.paragraphElement.innerHTML = this.block.data.text;
     this.paragraphElement.setAttribute('contenteditable', 'true');
     this.paragraphElement.addEventListener('input', (event) => this.save(event), true);

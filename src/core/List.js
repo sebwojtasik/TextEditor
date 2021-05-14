@@ -4,11 +4,10 @@ import { model } from './model';
 export default class List {
   constructor(block) {
     this.block = block;
-    this.listElement;
+    this.listElement = document.createElement('ul');
   }
 
   render() {
-    this.listElement = document.createElement('ul');
     this.block.data.items.forEach((item) => {
       this.listElement.append(this.createListItem(item));
     });
@@ -67,6 +66,7 @@ export default class List {
         let currentBlockIndex = textEditor.getCurrentBlockIndex();
         this.listElement.remove();
         delete model.blocks[currentBlockIndex];
+        model.blocks.splice(currentBlockIndex, 1);
         textEditor.focusOnBlockIndex(currentBlockIndex - 1);
       } else {
         // else delete previous list item
